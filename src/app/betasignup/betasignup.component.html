@@ -1,0 +1,64 @@
+<!-- teaser-zone_start -->
+<div class="formHeader">
+  <div class="container hide-mobile">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-xl-9">
+        <div class="teaser-text text-center">
+          <h3>Alerts</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- teaser-zone_end -->
+
+<!-- SignUp -->
+<div class="contactus container page-body">
+  <div class="row align-items-center justify-content-center">
+    <div class="col-xl-9">
+      <form class="form-contact contact_form" id="contactForm" novalidate="novalidate">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row align-items-center justify-content-center">
+              <div class="col-xl-12">
+                <div class="text-center only-mobile">
+                  <h2>Alerts</h2>
+                </div>
+                <blockquote class="note">
+                  Our Alert automation tool will allow your team to monitor upcoming local government issues and collaborate on each as a team
+                  <br>
+                  <br>
+                  Be one of the first teams to get access to the Alerts Beta.
+                </blockquote>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <input [(ngModel)]="contact.name" name="name" type="text" class="form-control" id="fullNameInput" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your full name'" placeholder="Enter your full name">
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <input [(ngModel)]="contact.email" name="email" type="email" class="form-control" id="emailInput" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="Email">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <input [(ngModel)]="contact.company" name="company"  type="text" class="form-control" id="companyInput" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Company'" placeholder="Enter Company">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <textarea [(ngModel)]="contact.message" class="form-control w-100" name="message" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tell us how we can help'" placeholder="Tell us how we can help"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <button (click)="sendContact()" type="submit" class="button boxed-btn">Join the Waitlist!</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- SignUp end -->

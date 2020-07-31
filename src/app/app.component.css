@@ -1,0 +1,15 @@
+.navbar .nav-item.active{
+  border-bottom: 2px solid #d92027;
+}
+
+.navbar .nav-item:hover{
+  border-bottom: 2px solid #d92027;
+}
+
+.banner-close-btn{
+  cursor: pointer;
+}
+
+#joinBtn{
+  border: 1px solid #d92027;
+}

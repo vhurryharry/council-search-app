@@ -1,0 +1,41 @@
+<div class="overlay">
+  <div class="slider-zone">
+    <div class="one-slider d-flex align-items-center justify-content-center slider-background">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-9">
+            <div class="slider_text text-center">
+              <h3>Welcome to Council Search</h3>
+              <h4>Search the latest city, county, and committee agendas and minutes</h4>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 mx-auto">
+            <form class="form-group" (submit)="search()">
+              <div class="input-group">
+                <input id="searchBox" class="form-control py-2" type="search" value="" autocomplete="off" placeholder="I'm looking for..."
+                       matInput
+                       [formControl]="q"
+                       [matAutocomplete] = "auto">
+                <span (click)="search()" class="input-group-append">
+                  <button class="btn px-4 searchButton" type="button">
+                      <i class="fa fa-search"></i>
+                  </button>
+                </span>
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngIf="isLoading" class="is-loading">Loading suggestions...</mat-option>
+                  <ng-container *ngIf="!isLoading">
+                    <mat-option *ngFor="let suggestion of suggestions" [value]="suggestion.name" (click)="suggestClick(suggestion.name)">
+                      {{suggestion.name}}
+                    </mat-option>
+                  </ng-container>
+                </mat-autocomplete>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

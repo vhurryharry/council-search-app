@@ -1,0 +1,63 @@
+<!-- Document -->
+<div *ngIf="errorMsg != null" class="document container page-body">
+  <div class="row mx-auto pt-4">
+    <p class="errorMsg p-3">{{errorMsg}}</p>
+  </div>
+</div>
+<div *ngIf="success" class="document container page-body">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="search-result">
+            <blockquote class="regular-blockquote">
+              <h3 class="docTitle">{{title}}</h3>
+              <hr>
+              <div>
+                <div class="row">
+                  <div class="col-xl-6 pl-3">
+                    <i class="fa fa-calendar-o pr-2"></i>
+                    <span>{{meetingDate | date:'MMMM dd, yyyy'}}</span><br>
+                    <p>{{regionName}}, {{stateAbbr}} - {{documentType}}</p>
+                  </div>
+                  <div class="col-xl-6 pr-3">
+                    <div class="download">
+                      <a (click)="downloadPDF()" class="regular-btn darker radius">Download PDF <i class="fa fa-download"></i></a>
+<!--                      <a href="{{baseUrl}}/s3/download/{{uuid}}" (click)="showToaster()" class="regular-btn darker radius">Download PDF <i class="fa fa-download"></i></a>-->
+                    </div>
+                  </div>
+                </div>
+                <div class="result-content" [innerHTML]="content"></div>
+              </div>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- document end -->
+
+<!-- Loading Overlay -->
+<div id="overlay" *ngIf="isPageLoading">
+  <div id="spinner" class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<!-- Toaster -->
+<div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+  <div class="toast" style="position: absolute; top: 0; right: 0;">
+    <div class="toast-header">
+      <img src="..." class="rounded mr-2" alt="...">
+      <strong class="mr-auto">Bootstrap</strong>
+      <small>11 mins ago</small>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+  </div>
+</div>

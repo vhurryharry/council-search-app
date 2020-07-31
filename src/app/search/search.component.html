@@ -1,0 +1,224 @@
+<!-- teaser-zone_start -->
+<div class="teaser-zone teaser-background ">
+  <div class="container">
+    <!-- Search Box -->
+    <div class="row justify-content-center">
+      <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 mx-auto">
+        <form class="form-group" (submit)="search(true)">
+          <div class="input-group">
+            <input id="searchBox" class="form-control py-2" type="search" value="" autocomplete="off" placeholder="I'm looking for..."
+                   matInput
+                   [formControl]="q"
+                   [matAutocomplete] = "auto">
+            <span (click)="search(true)" class="input-group-append">
+                  <button class="btn px-4 searchButton" type="button">
+                      <i class="fa fa-search"></i>
+                  </button>
+                </span>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngIf="isSuggestLoading" class="is-loading">Loading suggestions...</mat-option>
+              <ng-container *ngIf="!isSuggestLoading">
+                <mat-option *ngFor="let suggestion of suggestions" [value]="suggestion.name" (click)="suggestClick(suggestion.name)">
+                  {{suggestion.name}}
+                </mat-option>
+              </ng-container>
+            </mat-autocomplete>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- teaser-zone_end -->
+<!-- filter area -->
+<div class="search-zone">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <div id="refine-button" class="py-3" (click)=toggleDisplay()>
+          <a class="noselect"><i class="fa fa-filter pr-1"></i> Refine Search <i class="fa {{refineIcon}} pl-1"></i></a>
+        </div>
+        <div *ngIf="displayFilters" id="filters" class="box">
+          <div class="row pt-4">
+            <div class="col-xl-6">
+              <h6>Phrase</h6>
+              <div class="filter-date-options mt-2 pl-2">
+<!--                <mat-checkbox [(ngModel)]="exactMatch">Must Match</mat-checkbox>-->
+                <label class="custom-control custom-checkbox state-item">
+                  <input type="checkbox" [checked]="exactMatch" (change)="toggleExact()" class="custom-control-input" >
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-label state-item-label">Must Match</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row pt-4">
+            <div class="col-xl-6">
+              <h6>Region Selector</h6>
+              <div class="filter-input">
+                <div class="input-group">
+                  <input class="form-control py-2 border-right-0 border filter-input-box" type="text" [(ngModel)]="regionFilterText" placeholder="Type to filter regions...">
+                  <span class="input-group-append">
+                <button class="btn btn-outline-secondary border-left-0 border" type="button" (click)="regionFilterText = ''">
+                  <i class="fa fa-times"></i>
+                </button>
+              </span>
+                </div>
+              </div>
+              <div class="filter-options mt-2 pl-2">
+                <div *ngIf="region == null || region.length == 0" class="noFilters mx-auto py-2 px-1">
+                  None available
+                </div>
+                <div *ngFor="let filter of region; let i = index" class="checkbox">
+                  <label class="custom-control custom-checkbox state-item" *ngIf="filter.name.toLowerCase().includes(regionFilterText.toLowerCase())">
+                    <input type="checkbox" [checked]="filter.checked" (change)="filter.toggle()" class="custom-control-input" >
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-label state-item-label">{{filter.name}}&nbsp;({{filter.count}})</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row pt-4">
+            <div class="col-xl-6">
+              <h6>Region Type Selector</h6>
+              <div class="filter-options mt-2 pl-2">
+                <div *ngIf="regionType == null || regionType.length == 0" class="noFilters mx-auto py-2 px-1">
+                  None available
+                </div>
+                <div *ngFor="let filter of regionType; let i = index" class="checkbox">
+                  <label class="custom-control custom-checkbox state-item">
+                    <input type="checkbox" [checked]="filter.checked" (change)="filter.toggle()" class="custom-control-input" >
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-label state-item-label">{{filter.name}}&nbsp;({{filter.count}})</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6">
+              <h6>Document Type Selector</h6>
+              <div class="filter-options mt-2 pl-2">
+                <div *ngIf="documentType == null || documentType.length == 0" class="noFilters mx-auto py-2 px-1">
+                  None available
+                </div>
+                <div *ngFor="let filter of documentType; let i = index" class="checkbox">
+                  <label class="custom-control custom-checkbox state-item">
+                    <input type="checkbox" [checked]="filter.checked" (change)="filter.toggle()" class="custom-control-input" >
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-label state-item-label">{{filter.name}}&nbsp;({{filter.count}})</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row pt-4">
+            <div class="col-xl-6">
+              <h6>Meeting Date</h6>
+              <div class="filter-date-options mt-2 pl-2">
+                <mat-form-field class="p-2">
+                  <mat-label>Start Date</mat-label>
+                  <input matInput [formControl]="startDate" [matDatepicker]="startPicker">
+                  <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #startPicker></mat-datepicker>
+                </mat-form-field>
+                <span class="fa fa-arrow-right mx-2 calarrow"></span>
+                <mat-form-field class="p-2">
+                  <mat-label>End Date</mat-label>
+                  <input matInput [formControl]="endDate" [matDatepicker]="endPicker">
+                  <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #endPicker></mat-datepicker>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-xl-6">
+              <h6>Sort</h6>
+              <div class="filter-date-options mt-2 pl-2">
+                <mat-form-field class="p-2">
+                  <mat-select [(value)]="sortVal">
+                    <mat-option *ngFor="let sort of sorts" [value]="sort">
+                      {{ sort }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="row pt-4">
+            <div class="col-xl-12">
+              <button (click)="search(true)" class="btn mb-4 mr-2 filterButton">Apply</button>
+              <button (click)="clearSelections()" class="btn mb-4 mr-2 filterButton">Clear</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- results -->
+<div id="results" class="container page-body">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="row">
+        <div class="search_title col-sm-6">
+          <h3>Search Results</h3>
+        </div>
+        <div class="col-sm-6">
+          <span class="results-info">{{total | number}} results</span>
+        </div>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mx-auto" *ngIf="results?.length == 0 && isPageLoading == false">
+      <span class="noResults">No results found</span>
+    </div>
+    <!-- Start results set -->
+    <div class="col-xl-12" *ngFor="let result of results" class="result pt-2">
+      <div class="search-result">
+        <a class="result-title" [routerLink]="['/document/', result.uuid]">{{result.title}}</a><br>
+        <blockquote class="regular-blockquote">
+          <div class="details pb-1">
+            <i class="fa fa-calendar-o pr-2"></i>
+            <span>{{result.meetingDate | date:'MMMM dd, yyyy'}}</span>
+            <span *ngIf="result.upcoming" class="ml-2 badge">Upcoming</span>
+          </div>
+          <div class="details pb-1">
+            {{result.regionName}}, {{result.state}} - {{result.docType}}
+          </div>
+          <div class="result-content" [innerHTML]="result.text"></div>
+        </blockquote>
+      </div>
+      <hr>
+    </div>
+  </div>
+</div>
+<!-- results end -->
+
+<!-- Paging Start -->
+<nav class="search-pagination justify-content-center d-flex">
+  <ul class="pagination">
+    <li *ngIf="currentPage - 1 > 0" class="page-item">
+      <a (click)="setPage(currentPage - 1)" class="page-link" aria-label="Previous">
+        <i class="fa fa-chevron-left"></i>
+      </a>
+    </li>
+    <li *ngFor="let page of pages" [ngClass]="{active:currentPage === page}" class="page-item">
+      <a (click)="setPage(page)" class="page-link">{{page}}</a>
+    </li>
+    <li *ngIf="currentPage + 1 < totalPages" class="page-item">
+      <a (click)="setPage(currentPage + 1)" class="page-link" aria-label="Next">
+        <i class="fa fa-chevron-right"></i>
+      </a>
+    </li>
+  </ul>
+</nav>
+<!-- Paging End -->
+
+<!-- Loading Overlay -->
+<div id="overlay" *ngIf="isPageLoading">
+  <div id="spinner" class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>

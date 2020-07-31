@@ -1,0 +1,65 @@
+<!-- teaser-zone_start -->
+<div class="formHeader">
+  <div class="container hide-mobile">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-xl-9">
+        <div class="teaser-text text-center">
+          <h3>Contact Us</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- teaser-zone_end -->
+
+<!-- Contact -->
+<div class="contactus container page-body">
+  <div class="row">
+    <div class="col-xl-12">
+      <form class="form-contact contact_form" id="contactForm" novalidate="novalidate">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row align-items-center justify-content-center">
+              <div class="col-xl-12">
+                <div class="text-center only-mobile">
+                  <h2>Contact Us</h2><br>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <input [(ngModel)]="contact.name" class="form-control valid" id="name" name="name" type="text" class="form-control" id="fullNameInput" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'">
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <input [(ngModel)]="contact.email" name="email" type="email" class="form-control" id="emailInput" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="Enter email address">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <input [(ngModel)]="contact.phone" name="phone"  type="phone" class="form-control" id="phoneInput" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Phone'" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Phone'" placeholder="Enter Phone">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <input [(ngModel)]="contact.company" name="company"  type="text" class="form-control" id="companyInput" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Company'" placeholder="Enter Company">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <textarea [(ngModel)]="contact.message" class="form-control w-100" name="message" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder="Enter Message"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <button (click)="sendContact()" type="submit" class="button boxed-btn">Send</button>
+          <br>
+          <br>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Contact end -->

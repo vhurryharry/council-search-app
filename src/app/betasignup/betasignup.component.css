@@ -1,0 +1,147 @@
+.formHeader {
+  background-color: #050429;
+  background-size: cover;
+  background-position: 50%;
+  text-align: center
+}
+
+.teaser-text h3 {
+  font-size: 40px
+}
+
+.teaser-zone {
+  background-size: cover;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  padding: 100px 0 40px
+}
+
+.errorMsg {
+  font-size: 30px;
+  color: grey;
+  border-left: 2px solid #d92027
+}
+
+.docTitle {
+  text-transform: capitalize
+}
+
+#overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .25);
+  z-index: 2;
+  cursor: pointer
+}
+
+#spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #009dff;
+  width: 5rem;
+  height: 5rem
+}
+
+.contact-info {
+  margin-bottom: 25px
+}
+
+.contact-info__icon {
+  margin-right: 20px
+}
+
+.contact-info__icon i,
+.contact-info__icon span {
+  color: #8f9195;
+  font-size: 27px
+}
+
+.contact-title {
+  font-size: 27px;
+  font-weight: 600;
+  margin-bottom: 20px
+}
+
+.form-contact label {
+  font-size: 14px
+}
+
+.form-contact .form-group {
+  margin-bottom: 30px
+}
+
+.form-contact .form-control {
+  border: 1px solid #e5e6e9;
+  border-radius: 0;
+  height: 48px;
+  padding-left: 18px;
+  font-size: 13px;
+  background: 0 0
+}
+
+.form-contact .form-control:focus {
+  outline: 0;
+  box-shadow: none
+}
+
+.form-contact .form-control::-webkit-input-placeholder {
+  font-weight: 300;
+  color: #999
+}
+
+.form-contact .form-control::-moz-placeholder {
+  font-weight: 300;
+  color: #999
+}
+
+.form-contact .form-control::-ms-input-placeholder {
+  font-weight: 300;
+  color: #999
+}
+
+.form-contact .form-control::placeholder {
+  font-weight: 300;
+  color: #999
+}
+
+.form-contact textarea {
+  border-radius: 0;
+  height: 100%!important
+}
+
+.contact-section {
+  padding: 130px 0 100px
+}
+
+@media (max-width:991px) {
+  .contact-section {
+    padding: 70px 0 40px
+  }
+}
+
+@media only screen and (min-width:992px) and (max-width:1200px) {
+  .contact-section {
+    padding: 80px 0 50px
+  }
+}
+
+.contact-section .btn_2 {
+  background-color: #191d34;
+  padding: 18px 60px;
+  border-radius: 50px;
+  margin-top: 0
+}
+
+.contact-section .btn_2:hover {
+  background-color: #ff5e13
+}
+
+.contactus {
+  margin-top: 50px
+}
