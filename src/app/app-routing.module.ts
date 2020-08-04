@@ -8,10 +8,12 @@ import { DocumentComponent } from './document/document.component';
 import { ContactComponent } from './contact/contact.component';
 import { BetasignupComponent } from './betasignup/betasignup.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'beta', component: BetasignupComponent },
   { path: 'search', component: SearchComponent },

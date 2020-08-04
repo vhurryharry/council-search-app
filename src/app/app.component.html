@@ -2,14 +2,22 @@
   <a class="navbar-brand" [routerLink]="['/home']">
     <img src="../assets/images/logo/logoRegGreyVertical.png" alt="Council Search">
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
-      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}" class="mx-2 nav-item"><a class="nav-link" [routerLink]="['/search']">Search</a></li>
-      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="mx-2 nav-item"><a class="nav-link" [routerLink]="['/beta']">Alerts</a></li>
-      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="mx-2 nav-item"><a class="nav-link" [routerLink]="['/contact']">Contact</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:false}" class="mx-2 nav-item"><a
+          class="nav-link" [routerLink]="['/search']">Search</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="mx-2 nav-item"><a
+          class="nav-link" [routerLink]="['/beta']">Alerts</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="mx-2 nav-item"><a
+          class="nav-link" [routerLink]="['/contact']">Contact</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="mx-2 nav-item"><a
+          class="nav-link" [routerLink]="['/login']" *ngIf="!isLoggedIn">Login</a></li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="mx-2 nav-item"><a
+          class="nav-link" (click)="logout()" *ngIf="isLoggedIn">Logout</a></li>
     </ul>
   </div>
 </nav>
@@ -21,7 +29,7 @@
     <div class="row">
       <div class="col-xl-12">
         <div class="banner-header">
-          <span (click)="closeBetaDisplay()" class="banner-close-btn" ><i class="fa fa-times"></i></span>
+          <span (click)="closeBetaDisplay()" class="banner-close-btn"><i class="fa fa-times"></i></span>
         </div>
       </div>
     </div>

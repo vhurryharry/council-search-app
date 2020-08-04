@@ -21,6 +21,9 @@ import { DocumentComponent } from './document/document.component';
 import { ContactComponent } from './contact/contact.component';
 import { BetasignupComponent } from './betasignup/betasignup.component';
 import { ThankyouComponent } from './thankyou/thankyou.component';
+import { LoginComponent } from './login/login.component';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthGuard } from './services/auth-guard.service';
 
 
 @NgModule({
@@ -28,6 +31,7 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
     AppComponent,
     SearchComponent,
     HomeComponent,
+    LoginComponent,
     DocumentComponent,
     ContactComponent,
     BetasignupComponent,
@@ -51,11 +55,15 @@ import { ThankyouComponent } from './thankyou/thankyou.component';
     MatAutocompleteModule,
     MatInputModule
   ],
-  providers: [{
+  providers: [
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true
-  }],
+    },
+    CookieService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
